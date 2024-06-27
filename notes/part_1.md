@@ -75,3 +75,25 @@ On the backend side, our first goal is to create a [GraphQL server](https://www.
 - Validate that query against our newly created schema
 - Populate the queried schema fields with mocked data
 - Return the populated fields as a response
+
+### 🧑 Client Side
+
+for the client side we are using react. to get started install two packages
+
+```shell
+npm install graphql @apollo/client
+```
+
+#### Setup:
+
+```ts
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+```
+
+### 👨‍💻 Code Gen
+
+> `@graphql-codegen/cli` is one such tool that can read in a GraphQL schema, compare it against the queries we're asking our frontend code to run, and generate all of the types that we'll need to use on the frontend. As we work on new features, we'll benefit from the clarity TypeScript gives us about what data exists on each type and what kinds of operations can be performed on it.
+
+```shell
+npm install -D @graphql-codegen/cli @graphql-codegen/client-preset
+```
