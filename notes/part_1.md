@@ -9,3 +9,48 @@ To build this feature, we'll use a "schema-first" design. That means we'll imple
 - **Frontend implementation:** Our client consumes data from our GraphQL API to render its views.
 
 > One of the benefits of schema-first design is that it reduces total development time by allowing frontend and backend teams to work in parallel. The frontend team can start working with mocked data as soon as the schema is defined, while the backend team develops the API based on that same schema. This isn't the only way to design a GraphQL API, but we believe it's an efficient one, so we'll use it throughout this course.
+
+### Graph
+
+An interconnected set of data represented by a schema. It encompasses the relationships between different data types and how they can be queried or mutated.
+
+> Now, if we think of each object as a node and each relationship as an edge between two nodes, we can think of our entire data model as a graph of nodes and edges. This is called our application's graph.
+
+### SDL (GQL - Schema Definition Language)
+
+A schema is collection of types and fields. The types can be scaler like `int`, `float`, `string`, `boolean`, and id or it can be an object.
+
+```graphql
+"I'm a regular description"
+"""
+I'm a block description
+with a line break
+"""
+type SpaceCat {
+  name: String!
+  age: Int
+}
+```
+
+_Example_
+
+```graphql
+"Schema for Space Cat"
+type SpaceCat {
+  name: String!
+  age: Int
+  missions: [Mission]
+}
+```
+
+```graphql
+"""
+This is block description for SpaceCat Schema
+"""
+type SpaceCat {
+  "name should be not null."
+  name: String!
+  age: Int
+  missions: [Mission]
+}
+```
