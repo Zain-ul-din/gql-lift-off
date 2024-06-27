@@ -54,3 +54,24 @@ type SpaceCat {
   missions: [Mission]
 }
 ```
+
+### Get started
+
+To get started with our schema, we'll need a couple packages first: `@apollo/server`, `graphql` and `graphql-tag`.
+
+- The `@apollo/server` package provides a full-fledged, spec-compliant GraphQL server.
+- The `graphql` package provides the core logic for parsing and validating GraphQL queries.
+- The `graphql-tag` package provides the gql template literal that we'll use in a moment.
+
+Additional Packages to add mock data.
+
+```shell
+npm i @graphql-tools/mock @graphql-tools/schema
+```
+
+On the backend side, our first goal is to create a [GraphQL server](https://www.apollographql.com/tutorials/lift-off-part1/05-apollo-server) that can:
+
+- Receive an incoming GraphQL query from our client
+- Validate that query against our newly created schema
+- Populate the queried schema fields with mocked data
+- Return the populated fields as a response
