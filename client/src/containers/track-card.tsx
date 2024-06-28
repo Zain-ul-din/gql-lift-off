@@ -4,15 +4,27 @@ import { colors, mq } from "../styles";
 import { humanReadableTimeFromSeconds } from "../utils/helpers";
 import { Link } from "react-router-dom";
 
+import { useMutation } from "@apollo/client";
+import { INCREMENT_TACK_VIEWS_MUTATION } from "../lib/mutations";
+
 /**
  * Track Card component renders basic info in a card format
  * for each track populating the tracks grid homepage.
  */
 const TrackCard: React.FC<{ track: any }> = ({ track }) => {
-  const { title, thumbnail, author, length, modulesCount } = track;
+  const { title, thumbnail, author, length, modulesCount, id } = track;
+
+  const [runIncrementMutation] = useMutation(INCREMENT_TACK_VIEWS_MUTATION, {
+    variables: {
+      trackId: id,
+    },
+    onCompleted: (res) => {
+      console.log(`🌀 Mutation Result: `, res);
+    },
+  });
 
   return (
-    <CardContainer to={`/track/${track.id}`}>
+    <CardContainer to={`/track/${id}`} onClick={() => runIncrementMutation()}>
       <CardContent>
         <CardImageContainer>
           <CardImage src={thumbnail || ""} alt={title} />
