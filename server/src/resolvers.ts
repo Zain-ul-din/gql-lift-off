@@ -1,4 +1,3 @@
-import { TrackAPI } from "./datasource/track-api";
 import { Resolvers } from "./types";
 
 const resolvers: Resolvers = {
@@ -12,10 +11,16 @@ const resolvers: Resolvers = {
       const res = await fetch(`${baseUrl}/tracks`);
       return res.json();
     },
+    track: async (_, args, { dataSources }) => {
+      return dataSources.trackAPI.getTrack(args.id);
+    },
   },
   Track: {
     author: ({ authorId }, __, { dataSources }) => {
       return dataSources.trackAPI.getAuthor(authorId);
+    },
+    modules: ({ id }, _, { dataSources }) => {
+      return dataSources.trackAPI.getTrackModules(id);
     },
   },
 };
